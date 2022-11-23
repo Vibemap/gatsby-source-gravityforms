@@ -30,6 +30,7 @@ async function getForms(basicAuth, api, baseUrl) {
                 auth: basicAuth,
             }
         )
+        console.log('DEBUG: getForms ', result);
     } catch (err) {
         console.log('getForms err ', err);
         apiErrorHandler(err)
@@ -73,7 +74,7 @@ async function getFormFields(basicAuth, api, baseUrl, form) {
         )
         console.log('result ', result);
     } catch (err) {
-        console.log('DEBUG: error: ', err);
+        //console.log('DEBUG: error: ', err);
         apiErrorHandler(err)
         // Kill the plugin
         return false
