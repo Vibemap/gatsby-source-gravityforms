@@ -71,6 +71,7 @@ async function getFormFields(basicAuth, api, baseUrl, form) {
                 auth: basicAuth,
             }
         )
+        console.log('result ', result);
     } catch (err) {
         apiErrorHandler(err)
         // Kill the plugin
