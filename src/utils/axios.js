@@ -31,6 +31,7 @@ async function getForms(basicAuth, api, baseUrl) {
                 auth: basicAuth,
             }
         )
+        console.log('getForms ', type(result), result);
     } catch (err) {
         console.log('getForms err ', err);
         apiErrorHandler(err)
@@ -63,7 +64,7 @@ async function getFormFields(basicAuth, api, baseUrl, form) {
 
     try {
         result = await axios.get(
-            baseUrl + routes.wp + routes.gf + routes.forms + '/' + form.id,
+            baseUrl + routes.wp + routes.gf + rout  es.forms + '/' + form.id,
             {
                 responseType: 'json',
                 params: {
