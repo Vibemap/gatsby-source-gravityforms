@@ -42,6 +42,7 @@ async function getForms(basicAuth, api, baseUrl) {
 
 // Get form fields from GF
 async function getFormFields(basicAuth, api, baseUrl, form) {
+    console.log('DEBUG: form ', form);
     reporter.verbose(`Fetching fields for form ${form.id}`)
 
     let authParams = new0AuthParameters(api.key)
@@ -88,6 +89,8 @@ async function getFormsAndFields(basicAuth, api, baseUrl, formsArgs) {
 
     // First get forms in list
     let allForms = await getForms(basicAuth, api, baseUrl)
+
+    console.log('allForms ', allForms);
 
     // If there are forms to move with
     if (allForms) {
@@ -146,9 +149,9 @@ function apiErrorHandler(error) {
         )
         */
 
-        console.log(error.response.data)
+        //console.log(error.response.data)
         console.log(error.response.status)
-        console.log(error.response.headers)
+        //console.log(error.response.headers)
     } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
