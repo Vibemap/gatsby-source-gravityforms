@@ -139,14 +139,16 @@ function apiErrorHandler(error) {
     if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
+        /*
         reporter.panicOnBuild(
             'Request was made, but there was an issue',
             new Error(`Error ${error.response.status} from GravityForms API`)
         )
+        */
 
-        // log(error.response.data)
-        // log(error.response.status)
-        // log(error.response.headers)
+         log(error.response.data)
+         log(error.response.status)
+         log(error.response.headers)
     } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
