@@ -19,6 +19,7 @@ async function getForms(basicAuth, api, baseUrl) {
             api.secret
         )
 
+        console.log('getForms', baseUrl + routes.wp + routes.gf + routes.forms);
         result = await axios.get(
             baseUrl + routes.wp + routes.gf + routes.forms,
             {
