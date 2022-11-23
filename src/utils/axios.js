@@ -64,7 +64,7 @@ async function getFormFields(basicAuth, api, baseUrl, form) {
 
     try {
         result = await axios.get(
-            baseUrl + routes.wp + routes.gf + rout  es.forms + '/' + form.id,
+            baseUrl + routes.wp + routes.gf + routes.forms + '/' + form.id,
             {
                 responseType: 'json',
                 params: {
