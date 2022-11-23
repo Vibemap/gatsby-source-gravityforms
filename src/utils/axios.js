@@ -30,7 +30,7 @@ async function getForms(basicAuth, api, baseUrl) {
                 auth: basicAuth,
             }
         )
-        console.log('DEBUG: getForms ', result);
+        console.log('DEBUG: getForms ', result, typeof(result.data));
     } catch (err) {
         console.log('getForms err ', err);
         apiErrorHandler(err)
@@ -90,6 +90,7 @@ async function getFormsAndFields(basicAuth, api, baseUrl, formsArgs) {
     let formObj = {}
 
     // First get forms in list
+    console.log('getForms ', basicAuth, api, baseUrl);
     let allForms = await getForms(basicAuth, api, baseUrl)
 
     // If there are forms to move with
