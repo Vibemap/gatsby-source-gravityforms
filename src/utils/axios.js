@@ -31,7 +31,7 @@ async function getForms(basicAuth, api, baseUrl) {
                 auth: basicAuth,
             }
         )
-        console.log('getForms ', type(result), result);
+        console.log('getForms ', typeof(result), result);
     } catch (err) {
         console.log('getForms err ', err);
         apiErrorHandler(err)
