@@ -1,4 +1,4 @@
-const { nanoid } = require('nanoid')
+import nanoid from 'nanoid'
 
 /**
  * Destructure array and turn to string.
