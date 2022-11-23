@@ -57,6 +57,7 @@ exports.sourceNodes = async (
     }
 
     // Get a full object of forms and fields.
+    console.log('getFormsAndFields ', basicAuth, api, baseUrl, formsArgs);
     let formsObj = await getFormsAndFields(basicAuth, api, baseUrl, formsArgs)
 
     // Check to make sure we got forms. If issues occured
