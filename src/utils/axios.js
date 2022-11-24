@@ -19,10 +19,11 @@ async function getForms(basicAuth, api, baseUrl) {
             api.secret
         )
 
+        console.log('DEBUG: getForms ', baseUrl + routes.wp + routes.gf + routes.forms);
         result = await axios.get(
             baseUrl + routes.wp + routes.gf + routes.forms,
             {
-                responseType: 'json',
+                //responseType: 'json',
                 params: {
                     ...authParams,
                     oauth_signature: signature,
@@ -30,7 +31,7 @@ async function getForms(basicAuth, api, baseUrl) {
                 auth: basicAuth,
             }
         )
-        console.log('DEBUG: getForms ', result, typeof result.data);
+        console.log('DEBUG: getForms ', result.data, typeof result.data);
     } catch (err) {
         console.log('getForms err ', err);
         apiErrorHandler(err)
