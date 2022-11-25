@@ -31,7 +31,7 @@ async function getForms(basicAuth, api, baseUrl) {
         }
 
         result = await request(options)
-        console.log('DEBUG: getForms ', result.data, typeof result.data);
+        console.log('DEBUG: gotForms!!! ', result.data);
     } catch (err) {
         console.log('getForms err ', err);
         apiErrorHandler(err)
@@ -73,7 +73,7 @@ async function getFormFields(basicAuth, api, baseUrl, form) {
                 auth: basicAuth,
             }
         )
-        console.log('result ', result);
+        console.log('DEBUG Got form?  ', form.id, result);
     } catch (err) {
         //console.log('DEBUG: error: ', err);
         apiErrorHandler(err)
@@ -130,6 +130,8 @@ async function getFormsAndFields(basicAuth, api, baseUrl, formsArgs) {
                 )
 
                 formObj['form-' + currentForm.id] = form
+
+                console.log('DEBUG: got formObj !!!', formObj);
             }
         } else {
             reporter.error('We could not find any forms. Have you made any?')
