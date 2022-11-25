@@ -19,18 +19,16 @@ async function getForms(basicAuth, api, baseUrl) {
             api.secret
         )
 
-        console.log('DEBUG: getForms ', baseUrl + routes.wp + routes.gf + routes.forms);
-        result = await axios.get(
-            baseUrl + routes.wp + routes.gf + routes.forms,
-            {
-                //responseType: 'json',
-                params: {
-                    ...authParams,
-                    oauth_signature: signature,
-                },
-                auth: basicAuth,
+        var options = {
+            'method': 'GET',
+            'url': 'https://cms.vibemap.com/wp-json/gf/v2/forms',
+            'headers': {
+                'Authorization': 'Basic Y2tfZTkyODVmZjY1YmVmMmMyOWFiMmNmM2RjNjUyZTYzNWE3MmY0NDgyZTpjc183YzNiYmQ2OGUyZDhkMzllNzUwYjk1OTA5Yzk1ODY0M2FmYjg0MzBk',
+                'Cookie': 'PHPSESSID=2qpktsqepgn53gr3f82o5hts38'
             }
-        )
+        }
+
+        result = await request(options)
         console.log('DEBUG: getForms ', result.data, typeof result.data);
     } catch (err) {
         console.log('getForms err ', err);
