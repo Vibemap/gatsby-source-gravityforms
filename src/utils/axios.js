@@ -1,5 +1,5 @@
 const axios = require('axios')
-const request = require('request')
+const request = require('async-request');
 
 const oauthSignature = require('oauth-signature')
 const { routes } = require('./routes')
@@ -14,24 +14,21 @@ async function getForms(basicAuth, api, baseUrl) {
     let result
 
     try {
-        const signature = oauthSignature.generate(
-            'GET',
-            baseUrl + routes.wp + routes.gf + routes.forms,
-            authParams,
-            api.secret
-        )
-
-        var options = {
+        let url = 'https://cms.vibemap.com/wp-json/gf/v2/forms'
+        let options = {
             'method': 'GET',
-            'url': 'https://cms.vibemap.com/wp-json/gf/v2/forms',
+            //'url': 'https://cms.vibemap.com/wp-json/gf/v2/forms',
             'headers': {
                 'Authorization': 'Basic Y2tfZTkyODVmZjY1YmVmMmMyOWFiMmNmM2RjNjUyZTYzNWE3MmY0NDgyZTpjc183YzNiYmQ2OGUyZDhkMzllNzUwYjk1OTA5Yzk1ODY0M2FmYjg0MzBk',
                 'Cookie': 'PHPSESSID=2qpktsqepgn53gr3f82o5hts38'
             }
-        }
+        };
 
-        result = await request(options)
-        console.log('DEBUG: gotForms!!! ', result.data);
+        result = await request(url, options)
+        const data = JSON.parse(result.body)
+        console.log('DEBUG: gotForms!!! ', data);
+        return data
+
     } catch (err) {
         console.log('getForms err ', err);
         apiErrorHandler(err)
@@ -53,27 +50,22 @@ async function getFormFields(basicAuth, api, baseUrl, form) {
     const apiURL =
         baseUrl + routes.wp + routes.gf + routes.forms + '/' + form.id
 
-    // Make a new signature
-    const signature = oauthSignature.generate(
-        'GET',
-        apiURL,
-        authParams,
-        api.secret
-    )
-
     try {
-        result = await axios.get(
-            baseUrl + routes.wp + routes.gf + routes.forms + '/' + form.id,
-            {
-                responseType: 'json',
-                params: {
-                    ...authParams,
-                    oauth_signature: signature,
-                },
-                auth: basicAuth,
+        let url = apiURL
+        var options = {
+            'method': 'GET',
+            'headers': {
+                'Authorization': 'Basic Y2tfZTkyODVmZjY1YmVmMmMyOWFiMmNmM2RjNjUyZTYzNWE3MmY0NDgyZTpjc183YzNiYmQ2OGUyZDhkMzllNzUwYjk1OTA5Yzk1ODY0M2FmYjg0MzBk',
+                'Cookie': 'PHPSESSID=2qpktsqepgn53gr3f82o5hts38'
             }
-        )
-        console.log('DEBUG Got form?  ', form.id, result);
+        }
+
+        result = await request(url, options)
+        const data = JSON.parse(result.body)
+        data['slug'] = slugify(form.title);
+        data['apiURL'] = apiURL;
+        return data
+
     } catch (err) {
         //console.log('DEBUG: error: ', err);
         apiErrorHandler(err)
