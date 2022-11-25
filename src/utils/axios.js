@@ -26,7 +26,7 @@ async function getForms(basicAuth, api, baseUrl) {
 
         result = await request(url, options)
         const data = JSON.parse(result.body)
-        console.log('DEBUG: gotForms!!! ', data);
+        //console.log('DEBUG: gotForms!!! ', data);
         return data
 
     } catch (err) {
@@ -83,7 +83,7 @@ async function getFormsAndFields(basicAuth, api, baseUrl, formsArgs) {
     let formObj = {}
 
     // First get forms in list
-    console.log('getForms ', basicAuth, api, baseUrl);
+    //console.log('getForms ', basicAuth, api, baseUrl);
     let allForms = await getForms(basicAuth, api, baseUrl)
 
     // If there are forms to move with
