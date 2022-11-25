@@ -122,8 +122,7 @@ async function getFormsAndFields(basicAuth, api, baseUrl, formsArgs) {
                 )
 
                 formObj['form-' + currentForm.id] = form
-
-                console.log('DEBUG: got formObj !!!', formObj);
+                //console.log('DEBUG: got formObj !!!', formObj);
             }
         } else {
             reporter.error('We could not find any forms. Have you made any?')
